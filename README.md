@@ -1,6 +1,6 @@
-# React + TypeScript + Vite
+# GitHub searched App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This App is for searching Github users you are interested in.
 
 Currently, two official plugins are available:
 
