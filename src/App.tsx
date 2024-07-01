@@ -1,11 +1,18 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import './App.css';
+import Footer from './components/layout/Footer';
 
 function App() {
   return (
     <Router>
-      <Navbar title="Github Finder" />
+      <div className="flex flex-col justify-between h-screen">
+        <Navbar title="Github Finder" />
+
+        <main>Content</main>
+        
+        <Footer />
+      </div>
     </Router>
   );
 }
