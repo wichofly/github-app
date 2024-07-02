@@ -1,7 +1,15 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getGithubUrl, getGithubToken } from '../../service/config';
 
-const UserResults: React.FC = () => {
+interface User {
+  id: number;
+  login: string;
+}
+
+const UserResults = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -15,11 +23,23 @@ const UserResults: React.FC = () => {
         Authorization: `token ${githubToken}`,
       },
     });
+
     const data = await response.json();
-    console.log(data);
+    setUsers(data);
+    setLoading(false);
   };
 
-  return <div>UserResults</div>;
+  if (!loading) {
+    return (
+      <div>
+        {users.map((user: User) => (
+          <h3 key={user.id}>{user.login}</h3>
+        ))}
+      </div>
+    );
+  } else {
+    return <span className="loading loading-bars loading-lg"></span>;
+  }
 };
 
 export default UserResults;
