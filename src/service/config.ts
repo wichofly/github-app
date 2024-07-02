@@ -3,5 +3,5 @@ export const getGithubUrl = (): string => {
 };
 
 export const getGithubToken = (): string => {
-  return 'your_github_token_here';
+  return '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';
 };

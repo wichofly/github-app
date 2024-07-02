@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { getGithubUrl, getGithubToken } from '../../service/config';
 
 const UserResults: React.FC = () => {
   useEffect(() => {
@@ -6,10 +7,10 @@ const UserResults: React.FC = () => {
   }, []);
 
   const fetchUsers = async () => {
-    const githubUrl: string = 'https://api.github.com';
-    const githubToken: string = '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';
+    const githubUrl = getGithubUrl();
+    const githubToken = getGithubToken();
 
-    const response = await fetch(`${githubUrl}/users`, {
+    const response = await fetch(`${githubUrl}`, {
       headers: {
         Authorization: `token ${githubToken}`,
       },
