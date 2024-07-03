@@ -1,40 +1,13 @@
-import { useEffect, useState } from 'react';
-import { getGithubUrl, getGithubToken } from '../../service/config';
+import useGithub from '../../hooks/useGithub';
 import UserItem from './UserItem';
 
-interface User {
-  id: number;
-  login: string;
-  avatar_url: string;
-}
-
 const UserResults = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
-    const githubUrl = getGithubUrl();
-    const githubToken = getGithubToken();
-
-    const response = await fetch(`${githubUrl}`, {
-      headers: {
-        Authorization: `token ${githubToken}`,
-      },
-    });
-
-    const data = await response.json();
-    setUsers(data);
-    setLoading(false);
-  };
+  const { users, loading } = useGithub();
 
   if (!loading) {
     return (
       <div className="grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
-        {users.map((user: User) => (
+        {users.map((user) => (
           <UserItem key={user.id} user={user} />
         ))}
       </div>
