@@ -1,15 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useReducer } from 'react';
 import { getGithubUrl, getGithubToken } from '../service/config';
-
-interface User {
-  id: number;
-  login: string;
-  avatar_url: string;
-}
+import { initialState, githubReducer } from '../reducer/GithubReducer';
 
 const useGithub = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [state, dispatch] = useReducer(githubReducer, initialState);
 
   useEffect(() => {
     fetchUsers();
@@ -26,11 +20,11 @@ const useGithub = () => {
     });
 
     const data = await response.json();
-    setUsers(data);
-    setLoading(false);
+
+    dispatch({ type: 'SET_USERS', payload: data });
   };
 
-  return { users, loading };
+  return { users: state.users, loading: state.loading };
 };
 
 export default useGithub;
