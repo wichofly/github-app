@@ -16,7 +16,7 @@ interface Action {
 
 const initialState: State = {
   users: [],
-  loading: true,
+  loading: false,
 };
 
 const githubReducer = (state: State, action: Action): State => {
@@ -30,7 +30,7 @@ const githubReducer = (state: State, action: Action): State => {
     case 'SET_LOADING':
       return {
         ...state,
-        loading: action.payload,
+        loading: true,
       };
     default:
       return state;
