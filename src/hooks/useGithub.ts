@@ -10,19 +10,15 @@ const useGithub = () => {
     const githubToken = getGithubToken();
 
     setLoading();
-    const params = new URLSearchParams({
-      q: text,
-    });
-
-    const response = await fetch(`${githubSearchUrl}/search/users?${params}`, {
+    const response = await fetch(`${githubSearchUrl}/search/users?q=${text}`, {
       headers: {
         Authorization: `token ${githubToken}`,
       },
     });
 
-    const { items } = await response.json();
+    const data = await response.json();
 
-    dispatch({ type: 'SET_USERS', payload: items });
+    dispatch({ type: 'SET_USERS', payload: data.items });
   };
 
   // Set Loading

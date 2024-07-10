@@ -11,10 +11,10 @@ const UserSearch = () => {
     if (text === '') {
       alert('Please enter something to search.');
     } else {
-      // Proceed with the search logic
-      console.log('Hi ' + text);
+      // Proceed with the search logic     
       searchUsers(text);
       setText('');
+      console.log('Hi ' + text);
     }
   };
 
