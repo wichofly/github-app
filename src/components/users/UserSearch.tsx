@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import useGithub from '../../hooks/useGithub';
 
 const UserSearch = () => {
   const [text, setText] = useState('');
+  const { users } = useGithub();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (text === '') {
       alert('Please enter something to search.');
     } else {
@@ -39,9 +41,11 @@ const UserSearch = () => {
         </form>
       </div>
 
-      <div>
-        <button className="btn btn-ghost btn-lg">Clear</button>
-      </div>
+      {users.length > 0 && (
+        <div>
+          <button className="btn btn-ghost btn-lg">Clear</button>
+        </div>
+      )}
     </div>
   );
 };
