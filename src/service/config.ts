@@ -1,5 +1,5 @@
-export const getGithubUrl = (): string => {
-  return 'https://api.github.com/users';
+export const getGithubSearchUrl = (): string => {
+  return 'https://api.github.com';
 };
 
 export const getGithubToken = (): string => {

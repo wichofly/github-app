@@ -3,7 +3,7 @@ import useGithub from '../../hooks/useGithub';
 
 const UserSearch = () => {
   const [text, setText] = useState('');
-  const { users } = useGithub();
+  const { users, searchUsers } = useGithub();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,7 +12,8 @@ const UserSearch = () => {
       alert('Please enter something to search.');
     } else {
       // Proceed with the search logic
-      console.log('Searching for:', text);
+      console.log('Hi ' + text);
+      searchUsers(text);
       setText('');
     }
   };
@@ -43,7 +44,9 @@ const UserSearch = () => {
 
       {users.length > 0 && (
         <div>
-          <button className="btn btn-ghost btn-lg">Clear</button>
+          <button className="btn btn-ghost btn-lg" onClick={() => setText('')}>
+            Clear
+          </button>
         </div>
       )}
     </div>
