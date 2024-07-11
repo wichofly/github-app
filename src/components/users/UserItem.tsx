@@ -1,9 +1,5 @@
 import { Link } from 'react-router-dom';
-
-interface User {
-  login: string;
-  avatar_url: string;
-}
+import { User } from '../../reducer/GithubReducer';
 
 interface Prop {
   user: User;

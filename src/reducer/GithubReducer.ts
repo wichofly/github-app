@@ -19,15 +19,23 @@ const initialState: State = {
   loading: false,
 };
 
+export enum ACTION_TYPES {
+  SET_USERS = 'SET_USERS',
+  SET_LOADING = 'SET_LOADING',
+}
+
 const githubReducer = (state: State, action: Action): State => {
+  console.log('payload: ', action.type);
+  console.log('type: ', typeof action);
   switch (action.type) {
-    case 'SET_USERS':
+    case ACTION_TYPES.SET_USERS:
+      console.log('in case...')
       return {
         ...state,
         users: action.payload,
         loading: false,
       };
-    case 'SET_LOADING':
+    case ACTION_TYPES.SET_LOADING:
       return {
         ...state,
         loading: true,

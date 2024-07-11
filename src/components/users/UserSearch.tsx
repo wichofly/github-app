@@ -1,9 +1,13 @@
 import { useState } from 'react';
-import useGithub from '../../hooks/useGithub';
+import { User } from '../../reducer/GithubReducer';
 
-const UserSearch = () => {
+interface Props {
+  searchUsers: (text: string) => void;
+  users: User[];
+}
+
+const UserSearch = ({ searchUsers, users }: Props) => {
   const [text, setText] = useState('');
-  const { users, searchUsers } = useGithub();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -11,7 +15,7 @@ const UserSearch = () => {
     if (text === '') {
       alert('Please enter something to search.');
     } else {
-      // Proceed with the search logic     
+      // Proceed with the search logic
       searchUsers(text);
       setText('');
       console.log('Hi ' + text);
