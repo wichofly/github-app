@@ -15,7 +15,7 @@ const Alert = ({ alert }: Prop) => {
           <circle cx="12" cy="12" r="12" fill="#FECDD3"></circle>:
           <path stroke="#B91C1C" strokeWidth="2" d="M8 8l8 8M16 8l-8 8" />
         </svg>
-        <p className="flex-1 text-base  leading-7 text-white">
+        <p className="flex-1 text-base leading-7 text-white">
           <strong>{alert.msg}</strong>
         </p>
       </div>

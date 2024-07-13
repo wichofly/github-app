@@ -10,7 +10,7 @@ const useAlert = () => {
   const setAlert = (msg: string, type: string) => {
     dispatch({ type: 'SET_ALERT', payload: { msg, type } });
 
-    // setTimeout(() => dispatch({ type: 'REMOVE_ALERT' }), 3000);
+    setTimeout(() => dispatch({ type: 'REMOVE_ALERT' }), 3000);
   };
 
   return {
