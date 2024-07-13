@@ -5,21 +5,17 @@ interface Prop {
 const Alert = ({ alert }: Prop) => {
   return (
     alert !== null && (
-      <div role="alert" className={`alert alert-${alert.type}`}>
+      <div role="alert" className={`alert alert-${alert.type} mb-4 space-x-2`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 shrink-0 stroke-current"
+          className="h-6 w-6 flex-none mt-0-5"
           fill="none"
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
+          <circle cx="12" cy="12" r="12" fill="#FECDD3"></circle>:
+          <path stroke="#B91C1C" strokeWidth="2" d="M8 8l8 8M16 8l-8 8" />
         </svg>
-        <p>
+        <p className="flex-1 text-base  leading-7 text-white">
           <strong>{alert.msg}</strong>
         </p>
       </div>
