@@ -1,8 +1,15 @@
+import UserResults from '../components/users/UserResults';
+import UserSearch from '../components/users/UserSearch';
+import useGithub from '../hooks/useGithub';
+
 const Home = () => {
+  const { users, loading, searchUsers, clearUsers } = useGithub();
+
   return (
-    <div>
-      <h1 className="text-6xl">Welcome to LinkedIn!</h1>
-    </div>
+    <>
+      <UserSearch searchUsers={searchUsers} users={users} clearUsers={clearUsers}/>
+      <UserResults users={users} loading={loading} />
+    </>
   );
 };
 
