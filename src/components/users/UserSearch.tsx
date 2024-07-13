@@ -4,17 +4,18 @@ import { User } from '../../reducer/GithubReducer';
 interface Props {
   searchUsers: (text: string) => void;
   clearUsers: () => void;
+  setAlert: (message: string, type: string) => void;
   users: User[];
 }
 
-const UserSearch = ({ searchUsers, clearUsers, users }: Props) => {
+const UserSearch = ({ searchUsers, clearUsers, setAlert, users }: Props) => {
   const [text, setText] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (text === '') {
-      alert('Please enter something to search.');
+      setAlert('Please enter something to search.', 'error');
     } else {
       // Proceed with the search logic
       searchUsers(text);
