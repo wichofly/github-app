@@ -3,11 +3,11 @@ import UserSearch from '../components/users/UserSearch';
 import useGithub from '../hooks/useGithub';
 
 const Home = () => {
-  const { users, loading, searchUsers } = useGithub();
+  const { users, loading, searchUsers, clearUsers } = useGithub();
 
   return (
     <>
-      <UserSearch searchUsers={searchUsers} users={users} />
+      <UserSearch searchUsers={searchUsers} users={users} clearUsers={clearUsers}/>
       <UserResults users={users} loading={loading} />
     </>
   );

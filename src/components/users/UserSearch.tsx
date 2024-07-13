@@ -3,10 +3,11 @@ import { User } from '../../reducer/GithubReducer';
 
 interface Props {
   searchUsers: (text: string) => void;
+  clearUsers: () => void;
   users: User[];
 }
 
-const UserSearch = ({ searchUsers, users }: Props) => {
+const UserSearch = ({ searchUsers, clearUsers, users }: Props) => {
   const [text, setText] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -48,7 +49,7 @@ const UserSearch = ({ searchUsers, users }: Props) => {
 
       {users.length > 0 && (
         <div>
-          <button className="btn btn-ghost btn-lg" onClick={() => setText('')}>
+          <button className="btn btn-ghost btn-lg" onClick={clearUsers}>
             Clear
           </button>
         </div>

@@ -1,7 +1,6 @@
 import { useReducer } from 'react';
 import { getGithubSearchUrl, getGithubToken } from '../service/config';
-import { initialState, githubReducer } from '../reducer/GithubReducer';
-import { ACTION_TYPES } from '../reducer/GithubReducer';
+import { initialState, githubReducer, ACTION_TYPES } from '../reducer/GithubReducer';
 
 const useGithub = () => {
   const [state, dispatch] = useReducer(githubReducer, initialState);
@@ -10,7 +9,7 @@ const useGithub = () => {
     const githubSearchUrl = getGithubSearchUrl();
     const githubToken = getGithubToken();
 
-    setLoading();    
+    setLoading();
     const response = await fetch(`${githubSearchUrl}/search/users?q=${text}`, {
       headers: {
         Authorization: `token ${githubToken}`,
@@ -25,7 +24,15 @@ const useGithub = () => {
   // Set Loading
   const setLoading = () => dispatch({ type: ACTION_TYPES.SET_LOADING });
 
-  return { users: state.users, loading: state.loading, searchUsers };
+  // Clear Users
+  const clearUsers = () => dispatch({ type: ACTION_TYPES.SET_CLEAR });
+
+  return {
+    users: state.users,
+    loading: state.loading,
+    searchUsers,
+    clearUsers,
+  };
 };
 
-export default useGithub
+export default useGithub;

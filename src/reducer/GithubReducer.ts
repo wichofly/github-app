@@ -22,6 +22,7 @@ const initialState: State = {
 export enum ACTION_TYPES {
   SET_USERS = 'SET_USERS',
   SET_LOADING = 'SET_LOADING',
+  SET_CLEAR = 'SET_CLEAR',
 }
 
 const githubReducer = (state: State, action: Action): State => {
@@ -29,7 +30,7 @@ const githubReducer = (state: State, action: Action): State => {
   console.log('type: ', typeof action);
   switch (action.type) {
     case ACTION_TYPES.SET_USERS:
-      console.log('in case...')
+      console.log('in case...');
       return {
         ...state,
         users: action.payload,
@@ -39,6 +40,11 @@ const githubReducer = (state: State, action: Action): State => {
       return {
         ...state,
         loading: true,
+      };
+    case ACTION_TYPES.SET_CLEAR:
+      return {
+        ...state,
+        users: [],
       };
     default:
       return state;
