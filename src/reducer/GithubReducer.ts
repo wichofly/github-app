@@ -5,6 +5,7 @@ export interface User {
 }
 
 interface State {
+  user: any;
   users: User[];
   loading: boolean;
 }
@@ -16,6 +17,7 @@ interface Action {
 
 const initialState: State = {
   users: [],
+  user: {},
   loading: false,
 };
 
@@ -23,6 +25,7 @@ export enum ACTION_TYPES {
   SET_USERS = 'SET_USERS',
   SET_LOADING = 'SET_LOADING',
   SET_CLEAR = 'SET_CLEAR',
+  GET_USER = 'GET_USER',
 }
 
 const githubReducer = (state: State, action: Action): State => {
@@ -34,6 +37,12 @@ const githubReducer = (state: State, action: Action): State => {
       return {
         ...state,
         users: action.payload,
+        loading: false,
+      };
+    case ACTION_TYPES.GET_USER:
+      return {
+        ...state,
+        user: action.payload,
         loading: false,
       };
     case ACTION_TYPES.SET_LOADING:
