@@ -19,7 +19,6 @@ const User = () => {
     location,
     bio,
     blog,
-    twitter_username,
     login,
     html_url,
     followers,
@@ -53,10 +52,10 @@ const User = () => {
                 <img src={avatar_url} alt="" />
               </figure>
 
-              <div className="card-body justify-end">
+              {/* <div className="card-body justify-end">
                 <h2 className="card-title mb-0">{name}</h2>
                 <p>{login}</p>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -69,7 +68,7 @@ const User = () => {
                   <div className="mx-1 badge badge-info">Hireable</div>
                 )}
               </h1>
-              <p>{bio}</p>
+              <p className="mt-1">{bio}</p>
               <div className="mt-4 card-actions">
                 <a
                   href={html_url}
@@ -81,7 +80,80 @@ const User = () => {
                 </a>
               </div>
             </div>
+
+            <div className="w-full rounded-lg shadow-md bg-base-100 stats">
+              {location && (
+                <div className="stat">
+                  <div className="stat-title text-md">Location</div>
+                  <div className="text-lg stat-value">{location}</div>
+                </div>
+              )}
+              {login && (
+                <div className="stat">
+                  <div className="stat-title text-md">User</div>
+                  <div className="text-lg stat-value">{login}</div>
+                </div>
+              )}
+              {blog && (
+                <div className="stat">
+                  <div className="stat-title text-md">Website</div>
+                  <div className="text-lg stat-value">
+                    <a
+                      href={`https://${blog}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {blog}
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
+        </div>
+
+        <div className="w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats">
+          <div className="stat">
+            <div className="stat-figure text-secondary">
+              <FaUsers className="text-3xl md:text-5xl" />
+            </div>
+            <div className="stat-title pr-5">Followers</div>
+            <div className="stat-value pr-5 text-3xl md:text-4xl">
+              {followers}
+            </div>
+          </div>
+
+          <div className="stat">
+            <div className="stat-figure text-secondary">
+              <FaUserFriends className="text-3xl md:text-5xl" />
+            </div>
+            <div className="stat-title pr-5">Following</div>
+            <div className="stat-value pr-5 text-3xl md:text-4xl">
+              {following}
+            </div>
+          </div>
+
+          <div className="stat">
+            <div className="stat-figure text-secondary">
+              <FaCodepen className="text-3xl md:text-5xl" />
+            </div>
+            <div className="stat-title pr-5">Public Repos</div>
+            <div className="stat-value pr-5 text-3xl md:text-4xl">
+              {public_repos}
+            </div>
+          </div>
+
+          {public_gists > 0 && (
+            <div className="stat">
+              <div className="stat-figure text-secondary">
+                <FaStore className="text-3xl md:text-5xl" />
+              </div>
+              <div className="stat-title pr-5">Public Gits</div>
+              <div className="stat-value pr-5 text-3xl md:text-4xl">
+                {public_gists}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
