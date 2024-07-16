@@ -52,13 +52,16 @@ const useGithub = () => {
     const params = new URLSearchParams({
       sort: 'created',
       per_page: '10',
-    })
-
-    const response = await fetch(`${githubSearchUrl}/users/${login}/repos?${params}`, {
-      headers: {
-        Authorization: `token ${githubToken}`,
-      },
     });
+
+    const response = await fetch(
+      `${githubSearchUrl}/users/${login}/repos?${params}`,
+      {
+        headers: {
+          Authorization: `token ${githubToken}`,
+        },
+      }
+    );
     const data = await response.json();
     dispatch({ type: ACTION_TYPES.GET_REPOS, payload: data });
   };
@@ -70,10 +73,7 @@ const useGithub = () => {
   const clearUsers = () => dispatch({ type: ACTION_TYPES.SET_CLEAR });
 
   return {
-    users: state.users,
-    loading: state.loading,
-    user: state.user,
-    repos: state.repos,
+    ...state,
     searchUsers,
     clearUsers,
     getUser,
