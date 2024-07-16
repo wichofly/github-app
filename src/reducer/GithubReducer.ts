@@ -4,10 +4,15 @@ export interface User {
   avatar_url: string;
 }
 
+export interface Repo {
+  id: number;
+  name: string;
+}
+
 interface State {
   user: any;
   users: User[];
-  repos: any;
+  repos: Repo[];
   loading: boolean;
 }
 

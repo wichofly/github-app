@@ -1,5 +1,7 @@
+import { Repo } from '../../reducer/GithubReducer';
+
 interface Props {
-  repos: [];
+  repos: Repo[];
 }
 
 const RepoList = ({ repos }: Props) => {
