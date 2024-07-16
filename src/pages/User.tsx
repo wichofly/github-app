@@ -2,14 +2,16 @@ import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import useGithub from '../hooks/useGithub';
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
+import RepoList from '../components/repos/RepoList';
 
 const User = () => {
-  const { getUser, user, loading } = useGithub();
+  const { getUser, user, loading, getUserRepos, repos } = useGithub();
 
   const params = useParams();
 
   useEffect(() => {
     getUser(params.login);
+    getUserRepos(params.login);
   }, []);
 
   const {
@@ -155,6 +157,7 @@ const User = () => {
             </div>
           )}
         </div>
+        <RepoList repos={repos} />
       </div>
     </>
   );
