@@ -3,5 +3,5 @@ export const getGithubSearchUrl = (): string => {
 };
 
 export const getGithubToken = (): string => {
-  return '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';
+  return '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';
 };
