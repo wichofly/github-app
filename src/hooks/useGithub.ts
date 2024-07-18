@@ -12,20 +12,6 @@ const githubToken = getGithubToken();
 const useGithub = () => {
   const [state, dispatch] = useReducer(githubReducer, initialState);
 
-  const searchUsers = async (text: string) => {
-    setLoading();
-
-    const response = await fetch(`${githubSearchUrl}/search/users?q=${text}`, {
-      headers: {
-        Authorization: `token ${githubToken}`,
-      },
-    });
-
-    const data = await response.json();
-
-    dispatch({ type: ACTION_TYPES.SET_USERS, payload: data.items });
-  };
-
   // Get single User
   const getUser = async (login: string) => {
     setLoading();
@@ -37,7 +23,7 @@ const useGithub = () => {
     });
 
     if (response.status === 404) {
-      document.location = '/notfound';
+      window.location.href = '/notfound';
     } else {
       const data = await response.json();
 
@@ -74,7 +60,7 @@ const useGithub = () => {
 
   return {
     ...state,
-    searchUsers,
+    dispatch,
     clearUsers,
     getUser,
     getUserRepos,
