@@ -7,7 +7,7 @@ import RepoList from '../components/repos/RepoList';
 const User = () => {
   const { getUser, user, loading, getUserRepos, repos } = useGithub();
 
-  const params = useParams();
+  const params: any = useParams();
 
   useEffect(() => {
     getUser(params.login);
