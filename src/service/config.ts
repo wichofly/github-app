@@ -1,13 +1,13 @@
+
 export const getGithubSearchUrl = (): string => {
   return 'https://api.github.com';
 };
 
 export const getGithubToken = (): string => {
-
-  return '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';
+  const token = import.meta.env.VITE_GITHUB_TOKEN;
+  if (!token) {
+    throw new Error('GitHub token is not defined in the environment variables.');
+  }
+  return token;
 };
-
-/**
- * New token needed for github api
- */
 
