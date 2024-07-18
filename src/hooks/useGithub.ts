@@ -37,7 +37,7 @@ const useGithub = () => {
     });
 
     if (response.status === 404) {
-      window.location = '/notfound';
+      document.location = '/notfound';
     } else {
       const data = await response.json();
 
