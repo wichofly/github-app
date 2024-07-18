@@ -5,7 +5,7 @@ interface Prop {
 const Alert = ({ alert }: Prop) => {
   return (
     alert !== null && (
-      <div role="alert" className={`alert alert-${alert.type} mb-4 space-x-2`}>
+      <div role="alert" className={`alert alert-${alert.type} mb-4 space-x-2  bg-red-500`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6 flex-none mt-0-5"
