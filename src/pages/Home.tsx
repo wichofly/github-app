@@ -5,18 +5,13 @@ import useAlert from '../hooks/useAlert';
 import Alert from '../components/layout/Alert';
 
 const Home = () => {
-  const { users, loading, clearUsers, dispatch } = useGithub();
+  const { users, loading, dispatch } = useGithub();
   const { setAlert, alert } = useAlert();
 
   return (
     <>
       <Alert alert={alert} />
-      <UserSearch
-        users={users}
-        clearUsers={clearUsers}
-        setAlert={setAlert}
-        dispatch={dispatch}
-      />
+      <UserSearch users={users} setAlert={setAlert} dispatch={dispatch} />
       <UserResults users={users} loading={loading} />
     </>
   );

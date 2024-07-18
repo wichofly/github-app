@@ -3,7 +3,6 @@ import { ACTION_TYPES, User } from '../../reducer/GithubReducer';
 import { searchUsers } from '../../action/GithubActions';
 
 interface Props {
-  clearUsers: () => void;
   setAlert: (message: string, type: string) => void;
   users: User[];
   dispatch: React.Dispatch<any>;

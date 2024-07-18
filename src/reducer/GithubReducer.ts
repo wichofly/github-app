@@ -38,8 +38,7 @@ export enum ACTION_TYPES {
   SET_USERS = 'SET_USERS',
   SET_LOADING = 'SET_LOADING',
   SET_CLEAR = 'SET_CLEAR',
-  GET_USER = 'GET_USER',
-  GET_REPOS = 'GET_REPOS',
+  GET_USER_AND_REPOS = 'GET_USER_AND_REPOS',
 }
 
 const githubReducer = (state: State, action: Action): State => {
@@ -53,16 +52,11 @@ const githubReducer = (state: State, action: Action): State => {
         users: action.payload,
         loading: false,
       };
-    case ACTION_TYPES.GET_USER:
+    case ACTION_TYPES.GET_USER_AND_REPOS:
       return {
         ...state,
-        user: action.payload,
-        loading: false,
-      };
-    case ACTION_TYPES.GET_REPOS:
-      return {
-        ...state,
-        repos: action.payload,
+        user: action.payload.user,
+        repos: action.payload.repos,
         loading: false,
       };
     case ACTION_TYPES.SET_LOADING:

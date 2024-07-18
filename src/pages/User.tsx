@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import useGithub from '../hooks/useGithub';
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
 import RepoList from '../components/repos/RepoList';
-import { getUser, getUserRepos } from '../action/GithubActions';
+import { getUserAndRepos } from '../action/GithubActions';
 import { ACTION_TYPES } from '../reducer/GithubReducer';
 
 const User = () => {
@@ -15,11 +15,8 @@ const User = () => {
     dispatch({ type: ACTION_TYPES.SET_LOADING });
 
     const getUserData = async () => {
-      const userData = await getUser(params.login);
-      dispatch({ type: ACTION_TYPES.GET_USER, payload: userData });
-
-      const userRepoData = await getUserRepos(params.login);
-      dispatch({ type: ACTION_TYPES.GET_REPOS, payload: userRepoData });
+      const userData = await getUserAndRepos(params.login);
+      dispatch({ type: ACTION_TYPES.GET_USER_AND_REPOS, payload: userData });
     };
 
     getUserData();
