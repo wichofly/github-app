@@ -3,15 +3,26 @@ import { useParams, Link } from 'react-router-dom';
 import useGithub from '../hooks/useGithub';
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
 import RepoList from '../components/repos/RepoList';
+import { getUser, getUserRepos } from '../action/GithubActions';
+import { ACTION_TYPES } from '../reducer/GithubReducer';
 
 const User = () => {
-  const { getUser, user, loading, getUserRepos, repos } = useGithub();
+  const { user, loading, repos, dispatch } = useGithub();
 
   const params: any = useParams();
 
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
+    dispatch({ type: ACTION_TYPES.SET_LOADING });
+
+    const getUserData = async () => {
+      const userData = await getUser(params.login);
+      dispatch({ type: ACTION_TYPES.GET_USER, payload: userData });
+
+      const userRepoData = await getUserRepos(params.login);
+      dispatch({ type: ACTION_TYPES.GET_REPOS, payload: userRepoData });
+    };
+
+    getUserData();
   }, []);
 
   const {

@@ -9,7 +9,7 @@ interface Props {
   dispatch: React.Dispatch<any>;
 }
 
-const UserSearch = ({ clearUsers, setAlert, users, dispatch }: Props) => {
+const UserSearch = ({ setAlert, users, dispatch }: Props) => {
   const [text, setText] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -54,7 +54,10 @@ const UserSearch = ({ clearUsers, setAlert, users, dispatch }: Props) => {
 
       {users.length > 0 && (
         <div>
-          <button className="btn btn-ghost btn-lg" onClick={clearUsers}>
+          <button
+            className="btn btn-ghost btn-lg"
+            onClick={() => dispatch({ type: ACTION_TYPES.SET_CLEAR })}
+          >
             Clear
           </button>
         </div>
