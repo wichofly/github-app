@@ -1,24 +1,27 @@
 import { useState } from 'react';
-import { User } from '../../reducer/GithubReducer';
+import { ACTION_TYPES, User } from '../../reducer/GithubReducer';
+import { searchUsers } from '../../action/GithubActions';
 
 interface Props {
-  searchUsers: (text: string) => void;
-  clearUsers: () => void;
   setAlert: (message: string, type: string) => void;
   users: User[];
+  dispatch: React.Dispatch<any>;
 }
 
-const UserSearch = ({ searchUsers, clearUsers, setAlert, users }: Props) => {
+const UserSearch = ({ setAlert, users, dispatch }: Props) => {
   const [text, setText] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (text === '') {
       setAlert('Please enter something to search.', 'error');
     } else {
       // Proceed with the search logic
-      searchUsers(text);
+      dispatch({ type: ACTION_TYPES.SET_LOADING });
+      const users = await searchUsers(text);
+      dispatch({ type: ACTION_TYPES.SET_USERS, payload: users });
+
       setText('');
       console.log('Hi ' + text);
     }
@@ -50,7 +53,10 @@ const UserSearch = ({ searchUsers, clearUsers, setAlert, users }: Props) => {
 
       {users.length > 0 && (
         <div>
-          <button className="btn btn-ghost btn-lg" onClick={clearUsers}>
+          <button
+            className="btn btn-ghost btn-lg"
+            onClick={() => dispatch({ type: ACTION_TYPES.SET_CLEAR })}
+          >
             Clear
           </button>
         </div>

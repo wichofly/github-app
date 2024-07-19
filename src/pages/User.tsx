@@ -3,15 +3,23 @@ import { useParams, Link } from 'react-router-dom';
 import useGithub from '../hooks/useGithub';
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
 import RepoList from '../components/repos/RepoList';
+import { getUserAndRepos } from '../action/GithubActions';
+import { ACTION_TYPES } from '../reducer/GithubReducer';
 
 const User = () => {
-  const { getUser, user, loading, getUserRepos, repos } = useGithub();
+  const { user, loading, repos, dispatch } = useGithub();
 
   const params: any = useParams();
 
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
+    dispatch({ type: ACTION_TYPES.SET_LOADING });
+
+    const getUserData = async () => {
+      const userData = await getUserAndRepos(params.login);
+      dispatch({ type: ACTION_TYPES.GET_USER_AND_REPOS, payload: userData });
+    };
+
+    getUserData();
   }, []);
 
   const {
@@ -62,7 +70,7 @@ const User = () => {
           </div>
 
           <div className="col-span-2">
-            <div className="mb-6">
+            <div className="mb-6 text-zinc-50">
               <h1 className="text-3xl card-title">
                 {name}
                 <div className="ml-2 mr-1 badge badge-success">{type}</div>
@@ -83,7 +91,7 @@ const User = () => {
               </div>
             </div>
 
-            <div className="w-full rounded-lg shadow-md bg-base-100 stats">
+            <div className="w-full rounded-lg shadow-md bg-base-200 stats">
               {location && (
                 <div className="stat">
                   <div className="stat-title text-md">Location</div>
@@ -114,7 +122,7 @@ const User = () => {
           </div>
         </div>
 
-        <div className="w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats">
+        <div className="w-full py-5 mb-6 rounded-lg shadow-md bg-base-200 stats">
           <div className="stat">
             <div className="stat-figure text-secondary">
               <FaUsers className="text-3xl md:text-5xl" />
