@@ -19,6 +19,7 @@ const UserSearch = ({ setAlert, users, dispatch }: Props) => {
     } else {
       // Proceed with the search logic
       dispatch({ type: ACTION_TYPES.SET_LOADING });
+      
       const users = await searchUsers(text);
       dispatch({ type: ACTION_TYPES.SET_USERS, payload: users });
 
