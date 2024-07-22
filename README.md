@@ -6,10 +6,10 @@ This repository contains a GitHub-App that leverages the [GitHub API](https://ap
 ## Technologies Used
 
 - **Tailwind CSS**
-  Tailwind CSS is a utility-first CSS framework that allows for rapid UI development. It provides a set of classes that can be directly applied to HTML elements, enabling the creation of responsive and modern web designs without writing custom CSS.
+  - Tailwind CSS is a utility-first CSS framework that allows for rapid UI development. It provides a set of classes that can be directly applied to HTML elements, enabling the creation of responsive and modern web designs without writing custom CSS.
 
 - **DaisyUI**
- - DaisyUI is a Tailwind CSS component library that simplifies the process of building user interfaces. It offers a collection of pre-designed, fully responsive components that can be easily customized using Tailwind's utility classes. DaisyUI helps developers quickly assemble beautiful and consistent UIs.
+  - DaisyUI is a Tailwind CSS component library that simplifies the process of building user interfaces. It offers a collection of pre-designed, fully responsive components that can be easily customized using Tailwind's utility classes. DaisyUI helps developers quickly assemble beautiful and consistent UIs.
 
 - **Custom Hooks**
   - Custom hooks have been created to share functionality between components. Custom hooks are a way to reuse code logic between multiple components. By encapsulating logic in a custom hook, we can create reusable pieces of code that can be shared across components without duplicating the code. Custom hooks can be used to handle common tasks, such as fetching data, and can help to make our code more organized and easier to maintain.
