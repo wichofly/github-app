@@ -1,4 +1,4 @@
-# GitHub searched App
+# Github Searched App
 
 This repository contains a GitHub-App that leverages the [GitHub API](https://api.github.com) to search for and obtain the profile of the desired user. By making a request to the following endpoint, the app retrieves user information:
 
