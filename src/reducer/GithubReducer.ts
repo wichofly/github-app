@@ -16,20 +16,41 @@ export interface Repo {
 }
 
 interface State {
-  user: any;
+  user: User | null;
   users: User[];
   repos: Repo[];
   loading: boolean;
 }
 
-interface Action {
-  type: string;
-  payload?: any;
+// Define the different payload types based on action types
+interface SetUsersAction {
+  type: ACTION_TYPES.SET_USERS;
+  payload: User[]; // Users will be an array of User objects
 }
+
+interface GetUserAndReposAction {
+  type: ACTION_TYPES.GET_USER_AND_REPOS;
+  payload: { user: User; repos: Repo[] }; // Payload will have a user and repos
+}
+
+interface SetLoadingAction {
+  type: ACTION_TYPES.SET_LOADING;
+}
+
+interface SetClearAction {
+  type: ACTION_TYPES.SET_CLEAR;
+}
+
+// Use union types for Action to account for different actions
+type Action =
+  | SetUsersAction
+  | GetUserAndReposAction
+  | SetLoadingAction
+  | SetClearAction;
 
 const initialState: State = {
   users: [],
-  user: {},
+  user: null, // Use null initially instead of an empty object
   repos: [],
   loading: false,
 };
@@ -44,6 +65,7 @@ export enum ACTION_TYPES {
 const githubReducer = (state: State, action: Action): State => {
   console.log('payload: ', action.type);
   console.log('type: ', typeof action);
+
   switch (action.type) {
     case ACTION_TYPES.SET_USERS:
       console.log('in case...');
@@ -68,6 +90,8 @@ const githubReducer = (state: State, action: Action): State => {
       return {
         ...state,
         users: [],
+        user: null, // Reset user to null when clearing users
+        repos: [], // Clear repos as well
       };
     default:
       return state;
