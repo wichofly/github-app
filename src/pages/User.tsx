@@ -20,7 +20,7 @@ const User = () => {
     };
 
     getUserData();
-  }, []);
+  }, [params.login, dispatch]);
 
   const {
     name,
