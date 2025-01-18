@@ -7,7 +7,7 @@ import { getUserAndRepos } from '../action/GithubActions';
 import { ACTION_TYPES } from '../reducer/GithubReducer';
 
 const User = () => {
-  const { user, loading, repos, dispatch } = useGithub();
+  const { user, repos, dispatch } = useGithub();
 
   const params = useParams<{ login: string }>();
 
@@ -26,6 +26,14 @@ const User = () => {
     getUserData();
   }, [params.login, dispatch]);
 
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center">
+        <span className="loading loading-bars loading-lg"></span>;
+      </div>
+    );
+  }
+
   const {
     name,
     type,
@@ -40,15 +48,7 @@ const User = () => {
     public_repos,
     public_gists,
     hireable,
-  } = user || {};
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center">
-        <span className="loading loading-bars loading-lg"></span>;
-      </div>
-    );
-  }
+  } = user;
 
   return (
     <>
