@@ -22,7 +22,7 @@ const User = () => {
         dispatch({ type: ACTION_TYPES.SET_LOADING, payload: false });
       }
     };
-
+    
     getUserData();
   }, [params.login, dispatch]);
 
