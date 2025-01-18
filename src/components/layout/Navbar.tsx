@@ -10,8 +10,8 @@ const Navbar = ({ title }: Prop) => {
     <nav className="navbar mb-12 shadow-lg bg-neutral-800 text-white">
       <div className="container mx-auto p-2">
         <div className="flex-none">
-          <FaGithub className="inline pr-2 text-3xl" />
-          <Link to="/" className="text-xl font-bold align-middle">
+          <Link to="/" className="text-xl font-bold flex align-middle">
+            <FaGithub className="inline pr-2 text-3xl" />
             {title}
           </Link>
         </div>

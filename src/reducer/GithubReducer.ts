@@ -1,35 +1,24 @@
-export interface User {
-  id: number;
-  login: string;
-  avatar_url: string;
-}
-
-export interface Repo {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  stargazers_count: number;
-  watchers_count: number;
-  forks: number;
-  open_issues: number;
-}
+import { Repo, User } from '../interfaces/interface';
 
 interface State {
-  user: any;
+  user: User | null;
   users: User[];
   repos: Repo[];
   loading: boolean;
 }
 
-interface Action {
-  type: string;
-  payload?: any;
-}
+export type Action =
+  | { type: ACTION_TYPES.SET_USERS; payload: User[] }
+  | {
+      type: ACTION_TYPES.GET_USER_AND_REPOS;
+      payload: { user: User; repos: Repo[] };
+    }
+  | { type: ACTION_TYPES.SET_LOADING; payload: boolean }
+  | { type: ACTION_TYPES.SET_CLEAR };
 
 const initialState: State = {
   users: [],
-  user: {},
+  user: null,
   repos: [],
   loading: false,
 };
@@ -41,7 +30,7 @@ export enum ACTION_TYPES {
   GET_USER_AND_REPOS = 'GET_USER_AND_REPOS',
 }
 
-const githubReducer = (state: State, action: Action): State => {
+const githubReducer = (state: State = initialState, action: Action) => {
   console.log('payload: ', action.type);
   console.log('type: ', typeof action);
   switch (action.type) {

@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { ACTION_TYPES, User } from '../../reducer/GithubReducer';
+import { Dispatch, useState } from 'react';
+import { Action, ACTION_TYPES } from '../../reducer/GithubReducer';
 import { searchUsers } from '../../action/GithubActions';
+import { User } from '../../interfaces/interface';
 
 interface Props {
   setAlert: (message: string, type: string) => void;
   users: User[];
-  dispatch: React.Dispatch<any>;
+  dispatch: Dispatch<Action>;
 }
 
 const UserSearch = ({ setAlert, users, dispatch }: Props) => {
@@ -18,8 +19,8 @@ const UserSearch = ({ setAlert, users, dispatch }: Props) => {
       setAlert('Please enter something to search.', 'error');
     } else {
       // Proceed with the search logic
-      dispatch({ type: ACTION_TYPES.SET_LOADING });
-      
+      dispatch({ type: ACTION_TYPES.SET_LOADING, payload: true });
+
       const users = await searchUsers(text);
       dispatch({ type: ACTION_TYPES.SET_USERS, payload: users });
 

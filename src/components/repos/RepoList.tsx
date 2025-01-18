@@ -1,4 +1,4 @@
-import { Repo } from '../../reducer/GithubReducer';
+import { Repo } from '../../interfaces/interface';
 import RepoItem from './RepoItem';
 
 interface Props {

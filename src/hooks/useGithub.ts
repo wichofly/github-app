@@ -1,12 +1,12 @@
-import { useReducer } from 'react';
-import { initialState, githubReducer } from '../reducer/GithubReducer';
+import { useReducer, Dispatch } from 'react';
+import { initialState, githubReducer, Action } from '../reducer/GithubReducer';
 
 const useGithub = () => {
   const [state, dispatch] = useReducer(githubReducer, initialState);
 
   return {
     ...state,
-    dispatch,
+    dispatch: dispatch as Dispatch<Action>,
   };
 };
 

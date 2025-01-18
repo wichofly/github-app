@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { User } from '../../reducer/GithubReducer';
+import { User } from '../../interfaces/interface';
 
 interface Prop {
   user: User;

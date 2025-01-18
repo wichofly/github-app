@@ -1,4 +1,13 @@
-const AlertReducer = (state: any, action: { type: string; payload?: any }) => {
+export interface AlertState {
+  msg: string;
+  type: string;
+}
+
+export type AlertAction =
+  | { type: 'SET_ALERT'; payload: AlertState }
+  | { type: 'REMOVE_ALERT' };
+
+const AlertReducer = (state: AlertState | null, action: AlertAction) => {
   switch (action.type) {
     case 'SET_ALERT':
       return action.payload;

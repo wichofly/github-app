@@ -1,5 +1,5 @@
 import { FaEye, FaInfo, FaLink, FaStar, FaUtensils } from 'react-icons/fa';
-import { Repo } from '../../reducer/GithubReducer';
+import { Repo } from '../../interfaces/interface';
 
 interface Props {
   repo: Repo;

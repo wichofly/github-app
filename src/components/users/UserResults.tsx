@@ -1,5 +1,5 @@
+import { User } from '../../interfaces/interface';
 import UserItem from './UserItem';
-import { User } from '../../reducer/GithubReducer';
 
 interface Props {
   users: User[];

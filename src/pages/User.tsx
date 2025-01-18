@@ -9,14 +9,18 @@ import { ACTION_TYPES } from '../reducer/GithubReducer';
 const User = () => {
   const { user, loading, repos, dispatch } = useGithub();
 
-  const params: any = useParams();
+  const params = useParams<{ login: string }>();
 
   useEffect(() => {
-    dispatch({ type: ACTION_TYPES.SET_LOADING });
+    dispatch({ type: ACTION_TYPES.SET_LOADING, payload: true });
 
     const getUserData = async () => {
-      const userData = await getUserAndRepos(params.login);
-      dispatch({ type: ACTION_TYPES.GET_USER_AND_REPOS, payload: userData });
+      const userData = await getUserAndRepos(params.login as string);
+      if (userData) {
+        dispatch({ type: ACTION_TYPES.GET_USER_AND_REPOS, payload: userData });
+      } else {
+        dispatch({ type: ACTION_TYPES.SET_LOADING, payload: false });
+      }
     };
 
     getUserData();
@@ -36,7 +40,7 @@ const User = () => {
     public_repos,
     public_gists,
     hireable,
-  } = user;
+  } = user || {};
 
   if (loading) {
     return (
