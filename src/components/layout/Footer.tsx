@@ -28,7 +28,7 @@ const Footer = () => {
               <FaLinkedin className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
             </a>
             <a
-              href="https://github.com/wichofly/tipCalculator-app"
+              href="https://github.com/wichofly/github-app"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-400 transition duration-300"
@@ -37,7 +37,7 @@ const Footer = () => {
               <FaGithub className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
             </a>
             <a
-              href="https://wichofly.github.io/portfolio-website/"
+              href="https://mauricioerazo-portfolio.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-slate-400 transition duration-300"
